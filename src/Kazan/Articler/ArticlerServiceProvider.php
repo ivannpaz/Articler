@@ -21,7 +21,7 @@ class ArticlerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->package('kazan/articles-bin');
+        $this->package('kazan/articler');
     }
 
     /**
@@ -31,6 +31,8 @@ class ArticlerServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app['config']->package('kazan/articler', __DIR__ . '/../config');
+
         // $this->app->bind('articles-bin', function($app)
         // {
         //     return new Articler(
@@ -46,7 +48,7 @@ class ArticlerServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array('articles-bin');
+        return array('articler');
     }
 
 }

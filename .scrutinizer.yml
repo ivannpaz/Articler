@@ -1,0 +1,141 @@
+tools:
+
+    # Collects code coverage information about the changeset.
+    php_code_coverage:
+        config_path:          ~
+        test_command:         phpunit
+
+        # Whether code coverage information should only be generated for changesets.
+        only_changesets:      false
+        enabled:              false
+        filter:
+            paths:                []
+            excluded_paths:       []
+
+    # Runs PHP Code Sniffer
+    php_code_sniffer:
+        extensions:
+
+            # Default:
+            - php
+        command:              phpcs
+        enabled:              false
+        filter:
+            paths:                []
+            excluded_paths:       []
+        config:
+
+            # Built-in standards: PEAR, PHPCS, PSR1, PSR2, Squiz, Zend
+            standard:             PSR1
+            sniffs:               []
+            severity:             ~
+            error_severity:       ~
+            warning_severity:     ~
+            tab_width:            ~
+            encoding:             ~
+            config:
+
+                # Prototype
+                key:                  []
+        path_configs:
+
+            # Prototype
+            -
+                paths:                []
+                enabled:              true
+                config:
+
+                    # Built-in standards: PEAR, PHPCS, PSR1, PSR2, Squiz, Zend
+                    standard:             PSR1
+                    sniffs:               []
+                    severity:             ~
+                    error_severity:       ~
+                    warning_severity:     ~
+                    tab_width:            ~
+                    encoding:             ~
+                    config:
+
+                        # Prototype
+                        key:                  []
+
+    # Runs PHP Copy/Paste Detector
+    php_cpd:
+        command:              phpcpd
+
+        # Minimum number of identical lines (default: 5)
+        min_lines:            5
+
+        # Minimum number of identical tokens (default: 70)
+        min_tokens:           70
+
+        # A list of excluded directories.
+        excluded_dirs:        []
+
+        # A list of names that should be scanned (default: *.php)
+        names:
+
+            # Default:
+            - *.php
+        enabled:              false
+
+    # Runs the PHP CS Fixer (http://http://cs.sensiolabs.org/).
+    php_cs_fixer:
+        extensions:
+
+            # Default:
+            - php
+        command:              php-cs-fixer
+        enabled:              false
+        filter:
+            paths:                []
+            excluded_paths:       []
+        config:
+            level:                psr1 # Allowed Values: "psr0", "psr1", "psr2", "all"
+            fixers:               []
+        path_configs:
+
+            # Prototype
+            -
+                paths:                []
+                enabled:              true
+                config:
+                    level:                psr1 # Allowed Values: "psr0", "psr1", "psr2", "all"
+                    fixers:               []
+
+    # Analyzes the size and structure of a PHP project.
+    php_loc:
+        command:              phploc
+        names:
+
+            # Default:
+            - *.php
+        excluded_dirs:        []
+        enabled:              false
+
+    # Runs the PHP Mess Detector (http://phpmd.org).
+    php_mess_detector:
+        extensions:
+
+            # Default:
+            - php
+        command:              phpmd
+        enabled:              false
+        filter:
+            paths:                []
+            excluded_paths:       []
+        config:
+            rulesets:
+
+                # Default:
+                - codesize
+        path_configs:
+
+            # Prototype
+            -
+                paths:                []
+                enabled:              true
+                config:
+                    rulesets:
+
+                        # Default:
+                        - codesize

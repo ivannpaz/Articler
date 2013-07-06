@@ -29,7 +29,7 @@ return array(
     },
 
     'cache' => function($app) {
-        return new Kazan\Articler\Cache\NullCache();
+        return new Kazan\Articler\Cache\LaravelCache();
     },
 
     'configurator' => function($app) {

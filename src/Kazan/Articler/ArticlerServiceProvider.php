@@ -31,7 +31,7 @@ class ArticlerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app['config']->package('kazan/articler', __DIR__ . '/../config');
+        $this->app['config']->package('kazan/articler', __DIR__ . '/../../config');
 
         // $this->app->bind('articles-bin', function($app)
         // {

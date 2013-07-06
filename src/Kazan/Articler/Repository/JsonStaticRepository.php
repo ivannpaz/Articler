@@ -37,8 +37,8 @@ class JsonStaticRepository implements RepositoryInterface
     /**
      * Construct this instance.
      *
-     * @param FilesystemInterface $files
-     * @param string     $path  Where to load the json table of contents from.
+     * @param FilesystemInterface   $files
+     * @param string                $path
      */
     public function __construct(FilesystemInterface $files, $path)
     {

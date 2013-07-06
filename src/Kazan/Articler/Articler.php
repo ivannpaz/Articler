@@ -70,8 +70,7 @@ class Articler
     public function getList($collection)
     {
         $key = "articles-bin-list-{$collection}";
-        $ttl = $this->config->get('articles-bin::cache_ttl', self::CACHE_TTL);
-        $ttl = self::CACHE_TTL;
+        $ttl = $this->config->get('cache_ttl', self::CACHE_TTL);
 
         if (!$this->cache->has($key)) {
             $list = $this->repository->getList($collection);
@@ -96,8 +95,7 @@ class Articler
     public function getArticle($collection, $id)
     {
         $key = "articles-bin-item-{$collection}-{$id}";
-        $ttl = $this->config->get('articles-bin::cache_ttl', self::CACHE_TTL);
-        $ttl = self::CACHE_TTL;
+        $ttl = $this->config->get('cache_ttl', self::CACHE_TTL);
 
         if (!$this->cache->has($key)) {
             $article = $this->repository->getArticle($collection, $id);

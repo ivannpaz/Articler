@@ -12,7 +12,7 @@ class ArticlerServiceProvider extends ServiceProvider
      *
      * @var bool
      */
-    protected $defer = true;
+    protected $defer = false;
 
     /**
      * Bootstrap the application events.
@@ -21,7 +21,7 @@ class ArticlerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->package('kazan/articles-bin');
+        $this->package('kazan/articler');
     }
 
     /**
@@ -31,12 +31,22 @@ class ArticlerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // $this->app->bind('articles-bin', function($app)
-        // {
-        //     return new Articler(
-        //         $app['files'], $app['config'], $app['cache']
-        //     );
-        // });
+        $this->app['config']->package('kazan/articler', __DIR__ . '/../../config');
+
+        $this->app['articler'] = $this->app->share(function($app)
+        {
+            $repository     = $app['config']->get('articler::repository');
+            $parser         = $app['config']->get('articler::parser');
+            $cache          = $app['config']->get('articler::cache');
+            $configurator   = $app['config']->get('articler::configurator');
+
+            return new Articler(
+                $repository($app),
+                $parser($app),
+                $cache($app),
+                $configurator($app)
+            );
+        });
     }
 
     /**
@@ -46,7 +56,7 @@ class ArticlerServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array('articles-bin');
+        return array('articler');
     }
 
 }

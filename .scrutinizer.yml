@@ -1,9 +1,12 @@
 inherit: true
 
+before_commands:
+  - composer install --dev
+
 tools:
 
-  php_code_coverage:
-    enabled: true
+  php_code_coverage: true
+    only_changesets: false
 
   php_code_sniffer:
     enabled: true

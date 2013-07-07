@@ -2,7 +2,10 @@
 
 namespace Kazan\ArticlerTests\Repository;
 
+use DateTime;
 use Kazan\ArticlerTests\AbstractTestCase;
+use Kazan\Articler\Article\Article;
+use Kazan\Articler\Article\Tag;
 use Kazan\Articler\Repository\JsonStaticRepository;
 
 use Mockery as m;
@@ -77,6 +80,7 @@ class JsonStaticRepositoryTest extends AbstractTestCase
     {
         $fixture = file_get_contents(__DIR__ . '/../fixtures/articles.json');
         $content = 'this is the text in the article';
+        $slug = 'slug-article-4';
 
         $files = m::mock('Kazan\Articler\Filesystem\FilesystemInterface');
         $files->shouldReceive('get')
@@ -86,17 +90,31 @@ class JsonStaticRepositoryTest extends AbstractTestCase
 
         $object = $this->buildObject($files);
 
-        $article = $object->getArticle('fixtured', 'slug-article-4');
+        $article = $object->getArticle('fixtured', $slug);
 
         $this->assertInstanceOf(
             'Kazan\Articler\Article\Article',
             $article
         );
 
-        $this->assertEquals(
-            $content,
-            $article->getContent()
+        $tags = array(
+            new Tag('tag1'),
+            new Tag('tag2')
         );
+
+        $expected = new Article();
+        $expected
+            ->setSlug($slug)
+            ->setTitle('Article 4 title')
+            ->setAuthor('author')
+            ->setCreated(new DateTime('2013-05-03'))
+            ->setContent('this is the text in the article')
+            ->setTags($tags);
+
+        $this->assertInstanceOf('DateTime', $article->getCreated());
+        $this->assertEquals($expected, $article);
+        $this->assertEquals($tags, $article->getTags());
+        $this->assertEquals($content, $article->getContent());
     }
 
     public function testArticleNotFound()

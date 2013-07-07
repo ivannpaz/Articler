@@ -9,7 +9,7 @@ use Kazan\Articler\Article\Toc;
 use Kazan\Articler\Filesystem\FilesystemInterface;
 
 /**
- * 
+ *
  */
 class JsonStaticRepository implements RepositoryInterface
 {
@@ -134,9 +134,21 @@ class JsonStaticRepository implements RepositoryInterface
             ->setSlug($id)
             ->setAuthor($metadata['author'])
             ->setCreated(new DateTime($metadata['created']))
-            ->setContent($content);
+            ->setContent($content)
+            ->setTags($this->buildArticleTags($metadata));
 
         return $article;
+    }
+
+    protected function buildArticleTags($metadata)
+    {
+        $tags = array();
+
+        foreach ($metadata['tags'] as $tag) {
+            $tags[] = new Tag($tag);
+        }
+
+        return $tags;
     }
 
 }

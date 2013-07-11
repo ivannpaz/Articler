@@ -2,10 +2,12 @@
 
 namespace Kazan\Articler\Article;
 
+use JsonSerializable;
+
 /**
  * Representation of a single Article and its related data.
  */
-class Article
+class Article implements JsonSerializable
 {
 
     /**
@@ -264,5 +266,18 @@ class Article
         $this->excerpt = $excerpt;
 
         return $this;
+    }
+
+    public function jsonSerialize()
+    {
+        return array(
+            'title'     => $this->title,
+            'slug'      => $this->slug,
+            'created'   => $this->created,
+            'modified'  => $this->modified,
+            'author'    => $this->author,
+            'tags'      => $this->tags,
+            'content'   => $this->content,
+        );
     }
 }

@@ -2,10 +2,12 @@
 
 namespace Kazan\Articler\Article;
 
+use JsonSerializable;
+
 /**
  * Representation of a single Tag
  */
-class Tag
+class Tag implements JsonSerializable
 {
 
     /**
@@ -43,5 +45,10 @@ class Tag
         $this->title = $title;
 
         return $this;
+    }
+
+    public function jsonSerialize()
+    {
+        return $this->title;
     }
 }

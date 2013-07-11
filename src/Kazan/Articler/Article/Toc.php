@@ -2,10 +2,12 @@
 
 namespace Kazan\Articler\Article;
 
+use JsonSerializable;
+
 /**
  * Representation of a collection Toc
  */
-class Toc
+class Toc implements JsonSerializable
 {
 
     /**
@@ -53,5 +55,10 @@ class Toc
         $this->articles[] = $article;
 
         return $this;
+    }
+
+    public function jsonSerialize()
+    {
+        return $this->articles;
     }
 }

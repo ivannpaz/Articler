@@ -104,23 +104,6 @@ class JsonStaticRepository implements RepositoryInterface
     }
 
     /**
-     * Build a single artcile
-     * @param  string $slug
-     * @param  array $data
-     * @return Article
-     */
-    protected function buildArticle($slug, $data)
-    {
-        $article = new Article();
-        $article
-            ->setTitle($data['title'])
-            ->setSlug($slug)
-            ->setAuthor($data['author'])
-            ->setCreated(new DateTime($data['created']));
-        return $article;
-    }
-
-    /**
      * @inheritdoc
      */
     public function getArticle($collection, $id)
@@ -150,7 +133,7 @@ class JsonStaticRepository implements RepositoryInterface
      * @param  string   $content
      * @return Article
      */
-    protected function buildArticle($id, $metadata, $content)
+    protected function buildArticle($id, $metadata, $content='')
     {
         $article = new Article();
 

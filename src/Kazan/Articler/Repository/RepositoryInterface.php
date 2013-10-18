@@ -14,12 +14,14 @@ interface RepositoryInterface
      * Get the list of articles in this collection.
      *
      * @param  string   $collection
+     * @param  integer  $start
+     * @param  integer  $limit
      *
      * @throws RepositoryException
      *
      * @return Kazan\Articler\Article\Toc
      */
-    public function getList($collection);
+    public function getList($collection, $start=0, $limit=0);
 
     /**
      * Get a given article identified by $id from the $collection.

@@ -49,13 +49,13 @@ class JsonStaticRepository implements RepositoryInterface
     /**
      * @inheritdoc
      */
-    public function getList($collection)
+    public function getList($collection, $start=0, $limit=0)
     {
         if (!$this->metadata) {
             $this->metadata = $this->load($collection);
         }
 
-        return $this->toc = $this->build($this->metadata);
+        return $this->toc = $this->build($this->metadata, $start, $limit);
     }
 
     /**
@@ -77,11 +77,26 @@ class JsonStaticRepository implements RepositoryInterface
         return $this->metadata;
     }
 
-    protected function build($metadata)
+    /**
+     * Build a list of articles based on metadata
+     * @param  array  $metadata
+     * @param  integer $start
+     * @param  integer $limit
+     * @return Toc
+     */
+    protected function build($metadata, $start=0, $limit=0)
     {
         $toc = new Toc();
+        $i = 0;
+
+        if (empty($limit)) {
+            $limit = count($metadata);
+        }
 
         foreach ($metadata as $slug => $data) {
+            if ($i++ > $start + $limit) break;
+            if ($i < $start) continue;
+
             $article = new Article();
             $article
                 ->setTitle($data['title'])

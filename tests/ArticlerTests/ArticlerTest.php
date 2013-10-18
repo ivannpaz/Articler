@@ -49,6 +49,40 @@ class ArticlerTest extends AbstractTestCase
         );
     }
 
+    /**
+     * @dataProvider articlesListProvider
+     */
+    public function testGetListFromTwoToFive($isCached)
+    {
+        $collection = 'articles-collection';
+
+        $repository = m::mock('Kazan\Articler\Repository\RepositoryInterface');
+        $repository->shouldReceive('getList')
+            ->withAnyArgs()
+            ->times($isCached ? 0 : 1)
+            ->andReturn($collection);
+
+        $cache = m::mock('Kazan\Articler\Cache\CacheInterface');
+        $cache->shouldReceive('has')
+            ->once()
+            ->andReturn($isCached);
+        $cache->shouldReceive('get')
+            ->times($isCached ? 1 : 0)
+            ->andReturn($collection);
+        $cache->shouldReceive('put')
+            ->times($isCached ? 0 : 1);
+
+        $config = m::mock('Kazan\Articler\Config\ConfigInterface');
+        $config->shouldReceive('get')->once()->andReturn(1);
+
+        $object = $this->buildObject($repository, null, $cache, $config);
+
+        $this->assertEquals(
+            $collection,
+            $object->getList('two-to-five-collection')
+        );
+    }
+
     public function testGetArticleNotFound()
     {
         $repository = m::mock('Kazan\Articler\Repository\RepositoryInterface');

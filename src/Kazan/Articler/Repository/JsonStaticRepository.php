@@ -97,17 +97,27 @@ class JsonStaticRepository implements RepositoryInterface
             if ($i++ > $start + $limit) break;
             if ($i < $start) continue;
 
-            $article = new Article();
-            $article
-                ->setTitle($data['title'])
-                ->setSlug($slug)
-                ->setAuthor($data['author'])
-                ->setCreated(new DateTime($data['created']));
-
-            $toc->addArticle($article);
+            $toc->addArticle($this->buildArticle($slug, $data));
         }
 
         return $toc;
+    }
+
+    /**
+     * Build a single artcile
+     * @param  string $slug
+     * @param  array $data
+     * @return Article
+     */
+    protected function buildArticle($slug, $data)
+    {
+        $article = new Article();
+        $article
+            ->setTitle($data['title'])
+            ->setSlug($slug)
+            ->setAuthor($data['author'])
+            ->setCreated(new DateTime($data['created']));
+        return $article;
     }
 
     /**

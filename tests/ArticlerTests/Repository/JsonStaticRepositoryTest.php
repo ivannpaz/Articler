@@ -76,6 +76,32 @@ class JsonStaticRepositoryTest extends AbstractTestCase
         );
     }
 
+    public function testGetListFromTwoToFive()
+    {
+        $fixture = file_get_contents(__DIR__ . '/../fixtures/articles.json');
+
+        $files = m::mock('Kazan\Articler\Filesystem\FilesystemInterface');
+        $files->shouldReceive('get')
+            ->atMost()
+            ->once()
+            ->andReturn($fixture);
+
+        $object = $this->buildObject($files);
+
+        $toc = $object->getList('two-to-five-collection', 2, 5);
+
+        $this->assertInstanceOf(
+            'Kazan\Articler\Article\Toc',
+            $toc
+        );
+
+        $this->assertCount(
+            4,
+            $toc->getArticles(),
+            'Error getting articles from 2 to 5'
+        );
+    }
+
     public function testGetArticle()
     {
         $fixture = file_get_contents(__DIR__ . '/../fixtures/articles.json');

@@ -64,16 +64,18 @@ class Articler
      * Retrieve the list of articles stored in this bin.
      *
      * @param   string  $collection
+     * @param   integer $start
+     * @param   integer $limit
      *
      * @return  Kazan\Articler\Article\Toc
      */
-    public function getList($collection)
+    public function getList($collection, $start=0, $limit=0)
     {
         $key = "articles-bin-list-{$collection}";
         $ttl = $this->config->get('cache_ttl', self::CACHE_TTL);
 
         if (!$this->cache->has($key)) {
-            $list = $this->repository->getList($collection);
+            $list = $this->repository->getList($collection, $start, $limit);
 
             if ($list !== null) {
                 $this->cache->put($key, $list, $ttl);

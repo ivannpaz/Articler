@@ -1,11 +1,12 @@
-inherit: true
+inherit: false
 
 before_commands:
   - composer install --dev
 
 tools:
 
-  php_code_coverage: true
+  php_code_coverage:
+    test_command: phpunit -c report.xml
 
   php_code_sniffer:
     enabled: true

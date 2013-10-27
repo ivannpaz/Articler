@@ -8,6 +8,14 @@ use ReflectionClass;
 abstract class AbstractTestCase extends PHPUnit_Framework_TestCase
 {
 
+    public function __construct()
+    {
+        /**
+         * Drone.io CI complains when TimeZone not setup
+         */
+        date_default_timezone_set("UTC");
+    }
+
     protected function setMethodAccessible($className, $methodName)
     {
         $class = new ReflectionClass($className);

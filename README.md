@@ -1,7 +1,6 @@
 Articler
 ========
 
-CI Builds:
 [![Build Status](https://travis-ci.org/ivannpaz/Articler.png?branch=master)](https://travis-ci.org/ivannpaz/Articler)
 [![Build Status](https://drone.io/github.com/ivannpaz/Articler/status.png)](https://drone.io/github.com/ivannpaz/Articler/latest)
 

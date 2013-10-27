@@ -11,12 +11,6 @@ tools:
     enabled: true
     config:
       standard: PSR1 # Built-in standards: PEAR, PHPCS, PSR1, PSR2, Squiz, Zend
-      sniffs: []
-      severity: ~
-      error_severity: ~
-      warning_severity: ~
-      tab_width: ~
-      encoding: ~
 
   php_cpd:
     min_lines: 5

@@ -5,18 +5,13 @@ before_commands:
 
 tools:
 
-  php_code_coverage: true
+  php_code_coverage:
+    test_command: phpunit -c report.xml
 
   php_code_sniffer:
     enabled: true
     config:
       standard: PSR1 # Built-in standards: PEAR, PHPCS, PSR1, PSR2, Squiz, Zend
-      sniffs: []
-      severity: ~
-      error_severity: ~
-      warning_severity: ~
-      tab_width: ~
-      encoding: ~
 
   php_cpd:
     min_lines: 5

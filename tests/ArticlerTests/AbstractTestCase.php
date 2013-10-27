@@ -8,6 +8,11 @@ use ReflectionClass;
 abstract class AbstractTestCase extends PHPUnit_Framework_TestCase
 {
 
+    public function setUp()
+    {
+        date_default_timezone_set("UTC");
+    }
+
     protected function setMethodAccessible($className, $methodName)
     {
         $class = new ReflectionClass($className);

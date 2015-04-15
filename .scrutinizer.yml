@@ -1,17 +1,18 @@
 inherit: true
 
 before_commands:
-  - composer install --dev
+  - curl -s http://getcomposer.org/installer | php
+  - php composer.phar install
 
 tools:
 
-  php_code_coverage:
-    test_command: phpunit -c report.xml
+  external_code_coverage:
+    timeout: 1800
 
   php_code_sniffer:
     enabled: true
     config:
-      standard: PSR1 # Built-in standards: PEAR, PHPCS, PSR1, PSR2, Squiz, Zend
+      standard: PSR2
 
   php_cpd:
     min_lines: 5
@@ -21,7 +22,7 @@ tools:
   php_cs_fixer:
     enabled: true
     config:
-      level: psr1 # Allowed Values: "psr0", "psr1", "psr2", "all"
+      level: psr2
 
   php_loc:
     command: phploc

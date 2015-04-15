@@ -84,17 +84,17 @@ class JsonStaticRepository implements RepositoryInterface
     protected function build($metadata, $start = 0, $limit = 0)
     {
         $toc = new Toc();
-        $i = 0;
+        $index = 0;
 
         if (empty($limit)) {
             $limit = count($metadata);
         }
 
         foreach ($metadata as $slug => $data) {
-            if ($i++ > $start + $limit) {
+            if ($index++ > $start + $limit) {
                 break;
             }
-            if ($i < $start) {
+            if ($index < $start) {
                 continue;
             }
 

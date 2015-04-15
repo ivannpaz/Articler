@@ -13,7 +13,8 @@
         "michelf/php-markdown": "1.3.*"
     },
     "require-dev": {
-        "mockery/mockery": "dev-master@dev"
+        "mockery/mockery": "dev-master@dev",
+        "codacy/coverage": "dev-master"
     },
     "autoload": {
         "psr-0": {

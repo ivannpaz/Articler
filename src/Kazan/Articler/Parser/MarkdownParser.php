@@ -4,9 +4,6 @@ namespace Kazan\Articler\Parser;
 
 use Michelf\MarkdownExtra;
 
-/**
- * 
- */
 class MarkdownParser implements ParserInterface
 {
 
@@ -16,5 +13,4 @@ class MarkdownParser implements ParserInterface
 
         return $markdownParser->defaultTransform($content);
     }
-
 }

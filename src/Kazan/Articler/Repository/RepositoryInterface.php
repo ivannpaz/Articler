@@ -21,7 +21,7 @@ interface RepositoryInterface
      *
      * @return Kazan\Articler\Article\Toc
      */
-    public function getList($collection, $start=0, $limit=0);
+    public function getList($collection, $start = 0, $limit = 0);
 
     /**
      * Get a given article identified by $id from the $collection.
@@ -34,5 +34,4 @@ interface RepositoryInterface
      * @return Kazan\Articler\Article\Article
      */
     public function getArticle($collection, $id);
-
 }

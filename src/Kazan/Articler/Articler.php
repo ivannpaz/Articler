@@ -69,7 +69,7 @@ class Articler
      *
      * @return  Kazan\Articler\Article\Toc
      */
-    public function getList($collection, $start=0, $limit=0)
+    public function getList($collection, $start = 0, $limit = 0)
     {
         $key = "articles-bin-list-{$collection}-{$start}-{$limit}";
         $ttl = $this->config->get('cache_ttl', self::CACHE_TTL);
@@ -113,5 +113,4 @@ class Articler
 
         return $this->cache->get($key);
     }
-
 }

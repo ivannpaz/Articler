@@ -8,9 +8,6 @@ use Kazan\Articler\Article\Tag;
 use Kazan\Articler\Article\Toc;
 use Kazan\Articler\Filesystem\FilesystemInterface;
 
-/**
- *
- */
 class JsonStaticRepository implements RepositoryInterface
 {
 
@@ -49,7 +46,7 @@ class JsonStaticRepository implements RepositoryInterface
     /**
      * @inheritdoc
      */
-    public function getList($collection, $start=0, $limit=0)
+    public function getList($collection, $start = 0, $limit = 0)
     {
         if (!$this->metadata) {
             $this->metadata = $this->load($collection);
@@ -84,7 +81,7 @@ class JsonStaticRepository implements RepositoryInterface
      * @param  integer $limit
      * @return Toc
      */
-    protected function build($metadata, $start=0, $limit=0)
+    protected function build($metadata, $start = 0, $limit = 0)
     {
         $toc = new Toc();
         $i = 0;
@@ -94,8 +91,12 @@ class JsonStaticRepository implements RepositoryInterface
         }
 
         foreach ($metadata as $slug => $data) {
-            if ($i++ > $start + $limit) break;
-            if ($i < $start) continue;
+            if ($i++ > $start + $limit) {
+                break;
+            }
+            if ($i < $start) {
+                continue;
+            }
 
             $toc->addArticle($this->buildArticle($slug, $data));
         }
@@ -133,7 +134,7 @@ class JsonStaticRepository implements RepositoryInterface
      * @param  string   $content
      * @return Article
      */
-    protected function buildArticle($id, $metadata, $content='')
+    protected function buildArticle($id, $metadata, $content = '')
     {
         $article = new Article();
 
@@ -158,5 +159,4 @@ class JsonStaticRepository implements RepositoryInterface
 
         return $tags;
     }
-
 }

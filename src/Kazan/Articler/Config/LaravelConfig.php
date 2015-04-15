@@ -2,9 +2,6 @@
 
 namespace Kazan\Articler\Config;
 
-/**
- * 
- */
 class LaravelConfig implements ConfigInterface
 {
 

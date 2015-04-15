@@ -2,9 +2,6 @@
 
 namespace Kazan\Articler\Filesystem;
 
-/**
- * 
- */
 class LaravelFilesystem implements FilesystemInterface
 {
 
@@ -12,5 +9,4 @@ class LaravelFilesystem implements FilesystemInterface
     {
         return \File::get($file);
     }
-
 }

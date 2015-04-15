@@ -11,5 +11,4 @@ interface FilesystemInterface
 {
 
     public function get($file);
-
 }

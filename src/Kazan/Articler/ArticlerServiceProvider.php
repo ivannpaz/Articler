@@ -33,8 +33,7 @@ class ArticlerServiceProvider extends ServiceProvider
     {
         $this->app['config']->package('kazan/articler', __DIR__ . '/../../config');
 
-        $this->app['articler'] = $this->app->share(function($app)
-        {
+        $this->app['articler'] = $this->app->share(function ($app) {
             $repository     = $app['config']->get('articler::repository');
             $parser         = $app['config']->get('articler::parser');
             $cache          = $app['config']->get('articler::cache');
@@ -58,5 +57,4 @@ class ArticlerServiceProvider extends ServiceProvider
     {
         return array('articler');
     }
-
 }

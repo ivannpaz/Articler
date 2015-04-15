@@ -2,9 +2,6 @@
 
 namespace Kazan\Articler\Parser;
 
-/**
- * 
- */
 class NullParser implements ParserInterface
 {
 
@@ -12,5 +9,4 @@ class NullParser implements ParserInterface
     {
         return $content;
     }
-
 }

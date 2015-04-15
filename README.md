@@ -13,7 +13,7 @@ Requires php >= 5.4 as of tag 0.3.0 for some json serializations being tested.
 
 **Current Status:**
 
-- In use at: [http://ivannpaz.me/articles/](http://ivannpaz.me/articles)
+- In use at: [http://ivannpaz.me/articles/](http://ivannpaz.me/articles) (Site currently offline. Hang tight!)
 - Further additions being developed (ie. pagination support & extra providers)
 
 

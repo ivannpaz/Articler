@@ -3,6 +3,8 @@ language: php
 php:
   - 5.4
   - 5.5
+  - 5.6
+  - hhvm
 
 before_script:
   - curl -s http://getcomposer.org/installer | php
@@ -12,3 +14,5 @@ script: phpunit
 
 after_script:
   - php vendor/bin/codacycoverage clover
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml
